@@ -4,10 +4,10 @@
 
 Open two terminal tabs(one for FE, one for BE)
 
-First run: ``` yarn ```
 
-### FE: ``` yarn start ```
-### BE: ``` cd api && yarn start-api ```
+
+### FE: ``` yarn && yarn start ```
+### BE: ``` cd api && python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && yarn start-api ```
 
 Visit http://localhost:3000 on your local browser and interact with the website!
 
