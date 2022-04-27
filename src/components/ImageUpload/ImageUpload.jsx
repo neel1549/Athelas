@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import axios from "axios";
 
-const ImageUpload = ({ setImageUrl, setSpinner, user }) => {
+const ImageUpload = ({ setImageUrl, setSpinner, user, setUser }) => {
   const [uploadInput, setUploadInput] = useState();
   const [image, setImage] = useState();
   console.log(user);
@@ -23,6 +23,8 @@ const ImageUpload = ({ setImageUrl, setSpinner, user }) => {
         setSpinner(false);
         if (!user) {
           setImageUrl("http://localhost:5000/get-image/" + image.name);
+        } else {
+          setUser(true);
         }
       })
       .catch((error) => {
@@ -38,6 +40,9 @@ const ImageUpload = ({ setImageUrl, setSpinner, user }) => {
             ? "Login to see all your saved photos"
             : "Scroll through your gallery"}
         </Card.Title>
+        {user
+          ? "If logged in, upload an image, and it should show in the gallery!"
+          : "If not logged in, the image should show below"}
         <Card.Text>
           <Form onSubmit={uploadImage} id="comments">
             <Form.Group classname="mb-3">

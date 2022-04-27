@@ -15,6 +15,7 @@ function App() {
   const [userAuthenticated, setUserAuthenticated] = useState(false);
   const [spinner, setSpinner] = useState(false);
   console.log(imageUrl);
+
   const formData = new FormData();
   formData.append("email", "neel@cmu.com");
   formData.append("password", "12345");
@@ -58,6 +59,7 @@ function App() {
             setImageUrl={(value) => setImageUrl(value)}
             setSpinner={(value) => setSpinner(value)}
             user={userAuthenticated}
+            setUser={(value) => setUserAuthenticated(value)}
           />
           {spinner === true && <Spinner animation="border" />}
           {imageUrl && (
@@ -79,7 +81,7 @@ function App() {
           register={register}
           setUser={setUserAuthenticated}
         />
-        {userAuthenticated && <ImageGalleryMount />}
+        {userAuthenticated && <ImageGalleryMount user={userAuthenticated} />}
       </div>
     </>
   );
