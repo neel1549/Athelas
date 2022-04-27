@@ -13,4 +13,6 @@ Visit http://localhost:3000 on your local browser and interact with the website!
 
 <img src ="/api/static/img/uploads/readme/Screen Shot 2022-04-27 at 10.17.37 AM.png" width= 600/>
 
+Screen Recording: https://youtu.be/i0npbsSrn1g
+
 
