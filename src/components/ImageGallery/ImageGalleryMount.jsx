@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-const ImageGalleryMount = ({ user }) => {
-  console.log(user);
+const ImageGalleryMount = ({ refresh }) => {
   const [images, setImages] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/get-user-images", {
@@ -28,8 +27,7 @@ const ImageGalleryMount = ({ user }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [user]);
-  console.log(images);
+  }, []);
 
   return (
     <div style={{ zIndex: -1, marginTop: "40px" }}>

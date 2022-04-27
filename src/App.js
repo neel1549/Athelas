@@ -4,18 +4,20 @@ import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import ImageUpload from "./components/ImageUpload/ImageUpload";
 import LoginModal from "./components/LoginModal/LoginModal";
+import ProfileModal from "./components/ProfileModal/ProfileModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import ImageGalleryMount from "./components/ImageGallery/ImageGalleryMount";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [register, setRegister] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [userAuthenticated, setUserAuthenticated] = useState(false);
   const [spinner, setSpinner] = useState(false);
-  console.log(imageUrl);
-
+  const [refresh, setRefresh] = useState(0);
+  console.log("refresh");
   const formData = new FormData();
   formData.append("email", "neel@cmu.com");
   formData.append("password", "12345");
@@ -38,6 +40,7 @@ function App() {
         setUser={(value) => setUserAuthenticated(value)}
         user={userAuthenticated}
         logout={logout}
+        setProfile={setShowProfile}
       />
 
       <div
@@ -60,6 +63,7 @@ function App() {
             setSpinner={(value) => setSpinner(value)}
             user={userAuthenticated}
             setUser={(value) => setUserAuthenticated(value)}
+            setRefresh={(value) => setRefresh(value)}
           />
           {spinner === true && <Spinner animation="border" />}
           {imageUrl && (
@@ -81,7 +85,14 @@ function App() {
           register={register}
           setUser={setUserAuthenticated}
         />
-        {userAuthenticated && <ImageGalleryMount user={userAuthenticated} />}
+        <ProfileModal
+          show={showProfile}
+          setShow={setShowProfile}
+          user={userAuthenticated}
+        />
+        {userAuthenticated && (
+          <ImageGalleryMount key={refresh} user={userAuthenticated} />
+        )}
       </div>
     </>
   );

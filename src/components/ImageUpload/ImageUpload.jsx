@@ -2,36 +2,40 @@ import React, { useState } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import axios from "axios";
 
-const ImageUpload = ({ setImageUrl, setSpinner, user, setUser }) => {
+const ImageUpload = ({
+  setImageUrl,
+  setSpinner,
+  user,
+  setUser,
+  setRefresh,
+}) => {
+  console.log("User: " + user);
   const [uploadInput, setUploadInput] = useState();
   const [image, setImage] = useState();
-  console.log(user);
   const uploadImage = (e) => {
-    console.log(image);
     setImageUrl("");
     e.preventDefault();
     setSpinner(true);
     let formData = new FormData();
     formData.append("file", image);
-    console.log(...formData);
     axios
       .post("http://localhost:5000/upload-image", formData, {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response);
         setSpinner(false);
         if (!user) {
           setImageUrl("http://localhost:5000/get-image/" + image.name);
         } else {
-          setUser(true);
+          console.log("refresh bruh?");
+          setRefresh(Math.floor(Math.random() * 100));
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  console.log("imageupload");
   return (
     <Card style={{ width: "25rem", opacity: 0.95, borderRadius: "15px" }}>
       <Card.Body>

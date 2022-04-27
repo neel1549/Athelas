@@ -1,8 +1,16 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-
-const NavBar = ({ setShow, setRegister, user, setUser, logout }) => {
-  console.log(user);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+const NavBar = ({
+  setShow,
+  setRegister,
+  user,
+  setUser,
+  logout,
+  setProfile,
+}) => {
+  console.log("nav bar");
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -40,7 +48,10 @@ const NavBar = ({ setShow, setRegister, user, setUser, logout }) => {
               Logout
             </Nav.Link>
           )}
-          <Nav></Nav>
+          <Nav.Link>
+            <FontAwesomeIcon icon={faUser} onClick={() => setProfile(true)} />
+            <Nav />
+          </Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

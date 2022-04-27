@@ -50,6 +50,12 @@ def register():
         db.session.commit()
         return 'Registered'
     return ''
+@app.route("/me", methods=["GET"])
+@login_required
+def me():
+    return jsonify({"email":current_user.email})
+    
+
 
 
 @app.route('/login', methods = ['POST', 'GET'])
